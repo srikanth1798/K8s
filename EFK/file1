@@ -1,0 +1,13 @@
+kubectl port-forward svc/elasticsearch -n kube-logging 9200:9200
+
+
+ubuntu@i-029e5175e6964ac93:~$ curl -X GET "localhost:9200/_cat/indices?v"
+health status index                           uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   .geoip_databases                nkHD7CDzTV-eQYE9wmyUbA   1   0         40            0     37.7mb         37.7mb
+green  open   .kibana_7.17.0_001              tWHGc-k9S2mVSJTtqzIw1Q   1   0        320           31      4.8mb          4.8mb
+green  open   .apm-custom-link                kZ9T0nbLQJuywkEe8KfYbg   1   0          0            0       226b           226b
+green  open   .apm-agent-configuration        GAvvkJLHTNagaoJZvK0vEg   1   0          0            0       226b           226b
+yellow open   fluentd-2025.05.20              81C5hGfMSpCX4IH94v88qA   1   1     137308            0     60.1mb         60.1mb
+green  open   .tasks                          auT46HjgStmH9TkRv9JkFg   1   0          2            0     13.8kb         13.8kb
+green  open   .kibana_task_manager_7.17.0_001 JXjFO9FOS5qwOOeH4oXlvA   1   0         17          934    368.9kb        368.9kb
+ubuntu@i-029e5175e6964ac93:~$ 
