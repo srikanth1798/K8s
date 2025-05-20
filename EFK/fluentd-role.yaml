@@ -1,0 +1,15 @@
+kind: ClusterRole
+metadata:
+  name: fluentd-role
+rules:
+  - apiGroups: [""]
+    resources:
+      - namespaces
+      - pods
+      - nodes
+      - endpoints
+      - services
+    verbs:
+      - get
+      - list
+      - watch
