@@ -1,0 +1,12 @@
+Installing metrics-server
+
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+
+kubectl apply -f jenkins-dep.yaml
+
+kubectl apply -f jenkins-hpa.yaml
+
+kubectl apply -f jenkins-svc.yaml
+
+  
