@@ -9,4 +9,24 @@ kubectl apply -f jenkins-hpa.yaml
 
 kubectl apply -f jenkins-svc.yaml
 
+
+VERTICAL POD AUTOSCALING
+
+
+git clone https://github.com/kubernetes/autoscaler.git
+cd autoscaler/vertical-pod-autoscaler/
+
+kubectl apply -f deploy/vpa-v1-crd-gen.yaml
+
+kubectl apply -f deploy/vpa-rbac.yaml
+
+
+kubectl apply -f deploy/recommender-deployment.yaml
+kubectl apply -f deploy/updater-deployment.yaml
+kubectl apply -f deploy/admission-controller-deployment.yaml
+
+
+
+
+
   
