@@ -1,44 +1,3 @@
-==========================================
-PERSISTENT VOLUME
-==========================================
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: my-static-volume
-  labels:
-    type: local
-spec:
-  storageClassName: local-storage
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /opt/jenkins_data
-    type: DirectoryOrCreate
-
-
-==========================================
-PERSISTENT VOLUME CLAIM
-==========================================
-
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jenkins-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: local-storage # Must match the PV's StorageClass
-
-====================================================
-DEPLOYMENT 
-====================================================
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -53,6 +12,7 @@ spec:
       labels:
         app: jenkins
     spec:
+      nodeName: i-006f3a3a29a69092e
       containers:
         - name: jenkins
           image: jenkins/jenkins:latest
@@ -62,7 +22,7 @@ spec:
           volumeMounts:
             - name: jenkins-data
               mountPath: /var/jenkins_home
-          volumes:
+      volumes:
         - name: jenkins-data
           persistentVolumeClaim:
-            claimName: jenkins-pvc
+          claimName: jenkins-pvc
